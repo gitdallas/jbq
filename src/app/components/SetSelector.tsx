@@ -206,6 +206,43 @@ export const SetSelector: React.FC<SetSelectorProps> = ({
         },
     ];
 
+    function createObject(
+        sets: any[],
+        selectedNumbers: number[]
+      ): any[] {
+        const newSets: any[] = [...sets];
+        const newSelectedSets: any[] = [];
+      
+        for (const selectedNumber of selectedNumbers) {
+          const selectedSet: any | undefined = newSets.find((set) =>
+            set.children?.some((child) => child.name === selectedNumber.toString())
+          );
+      
+          if (!selectedSet) {
+            throw new Error("Selected number not found in any set.");
+          }
+      
+          const newChildren: any[] = selectedSet.children!.filter(
+            (child) => child.name === selectedNumber.toString()
+          );
+      
+          const newSet: any = {
+            ...selectedSet,
+            children: newChildren,
+          };
+      
+          newSelectedSets.push(newSet);
+        }
+      
+        return newSelectedSets;
+      }
+
+
+    React.useEffect(() => {
+        const bar = createObject(setOptions, selectedItems || []);
+        setSelectedSets(flattenTree(bar));
+    }, [selectedItems])
+
     // Helper functions for tree
     const isChecked = (dataItem: TreeViewDataItem) => selectedSets.some((item) => item.id === dataItem.id);
     const areAllDescendantsChecked = (dataItem: TreeViewDataItem) =>
@@ -277,7 +314,7 @@ export const SetSelector: React.FC<SetSelectorProps> = ({
             const newCheckedStuff = checked
             ? prevCheckedItems.concat(checkedStuff)
             : prevCheckedItems.filter((item) => !flatCheckedItems.some((i) => i.id === item.id));
-            onChange(newCheckedStuff.filter(i => !i.children).map(i => i.name));
+            onChange(newCheckedStuff.filter(i => !i.children).map(i => Number(i.name)));
             return newCheckedStuff;
         });
     };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CubesIcon } from '@patternfly/react-icons';
+import { CubesIcon, InfoIcon } from '@patternfly/react-icons';
 import {
   Button,
   Card,
@@ -17,12 +17,16 @@ import {
   List,
   ListItem,
   PageSection,
+  Progress,
+  ProgressMeasureLocation,
+  ProgressSize,
   Text,
   TextContent,
   TextVariants,
   Toolbar,
   ToolbarContent,
   ToolbarItem,
+  Tooltip,
 } from '@patternfly/react-core';
 import { questions } from '../data';
 import { Answer, Reference } from '@app/utils/common';
@@ -34,6 +38,7 @@ const FlashCards: React.FunctionComponent = () => {
   const [question, setQuestion] = React.useState(questions[0]);
   const [showAnswer, setShowAnswer] = React.useState(false);
   const [questionIndex, setQuestionIndex] = React.useState(0);
+  const [setsSelected, setSetsSelected] = React.useState([9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
 
   const shuffle = (array: any[]) => { 
     for (let i = array.length - 1; i > 0; i--) { 
@@ -43,7 +48,19 @@ const FlashCards: React.FunctionComponent = () => {
     return array; 
   };
 
-  React.useEffect( () => { setFilteredQuestions(shuffle(questions)); console.log(filteredQuestions) }, []);
+  React.useEffect( () => {
+    console.log("setsSelected", {setsSelected, questions});
+    setFilteredQuestions(
+      shuffle(
+        questions.filter(q => setsSelected.includes(q.section))
+      )
+    );
+  }, [setsSelected]);
+  React.useEffect( () => {
+    console.log({filteredQuestions})
+    setQuestionIndex(0);
+    setQuestion(filteredQuestions[0]);
+  }, [filteredQuestions]);
 
   const next = () => {
     if (showAnswer) {
@@ -60,18 +77,20 @@ const FlashCards: React.FunctionComponent = () => {
       <Toolbar>
         <ToolbarContent>
           <ToolbarItem>
-            <Button onClick={next} variant="primary">
+            <Button onClick={next} variant="primary" style={{width: '200px'}}>
               {showAnswer ? 'Next Question' : 'Show Answer'}
             </Button>
           </ToolbarItem>
           <ToolbarItem>
-            <SetSelector selectedItems={[1]} onChange={(foo) => {console.log(foo)}}></SetSelector>
+            <SetSelector selectedItems={setsSelected} onChange={(newSets) => setSetsSelected(newSets)}></SetSelector>
           </ToolbarItem>
         </ToolbarContent>
       </Toolbar>
-      <br /><br />
+      <Card><CardBody>
+        <Progress value={(questionIndex/filteredQuestions.length)*100} title={`Question ${questionIndex + 1} of ${filteredQuestions.length}`} measureLocation={ProgressMeasureLocation.inside}/>
+      </CardBody></Card>
       <Card>
-        <CardBody>
+        {!!question && (<CardBody>
           <div>
             <span className='question-start'>
               For {question.points} points, {question.quotation && 'Quotation question: '}{question.question.start}{` `}
@@ -91,7 +110,7 @@ const FlashCards: React.FunctionComponent = () => {
               </List>
             )}
           </div>
-        </CardBody>
+        </CardBody>)}
       </Card>
     </PageSection>
   )
