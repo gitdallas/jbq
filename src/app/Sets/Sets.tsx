@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BackToTop, Card, DataList, DataListCell, DataListItem, DataListItemCells, DataListItemRow, EmptyState, EmptyStateBody, EmptyStateHeader, Flex, FlexItem, List, ListItem, NumberInput, PageSection, Title } from '@patternfly/react-core';
+import { BackToTop, DataList, DataListCell, DataListItem, DataListItemCells, DataListItemRow, EmptyState, EmptyStateBody, EmptyStateHeader, Flex, FlexItem, List, ListItem, NumberInput, PageSection, Title } from '@patternfly/react-core';
 import { questions } from '../data';
 import { Answer, Reference } from '@app/utils/common';
 const Sets: React.FunctionComponent = () => {

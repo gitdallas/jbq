@@ -1,5 +1,4 @@
-import { TreeViewDataItem, MenuToggle, Panel, PanelMain, PanelMainBody, Title, TreeView, MenuContainer } from '@patternfly/react-core';
-import { check } from 'prettier';
+import { TreeViewDataItem, MenuToggle, Panel, PanelMain, PanelMainBody, TreeView, MenuContainer } from '@patternfly/react-core';
 import * as React from 'react';
 
 export interface SetSelectorProps {
@@ -323,9 +322,19 @@ export const SetSelector: React.FC<SetSelectorProps> = ({
         setIsOpen(!isOpen);
     };
 
+    const getRanges = (array: number[]) => {
+        for (var ranges:string[] = [], rend, i = 0; i < array.length;) {
+          ranges.push ((rend = array[i]) + ((function (rstart) {
+            while (++rend === array[++i]);
+            return --rend === rstart;
+          })(rend) ? '' : '-' + rend)); 
+        }
+        return ranges.sort((a,b) => parseInt(a) - parseInt(b)).join(', ');
+      }
+
     const toggle = (
         <MenuToggle ref={toggleRef} onClick={onToggleClick} isExpanded={isOpen}>
-            Select Sets
+            {selectedItems ? `sets: ${getRanges(selectedItems)}`: `Select Sets`}
         </MenuToggle>
     );
     const setMapped = setOptions.map(mapTree);
