@@ -6,6 +6,7 @@ import { GeneralSettings } from '@app/Settings/General/GeneralSettings';
 import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
+import { QuestionTable } from './Table/Table';
 
 let routeFocusTimer: number;
 export interface IAppRoute {
@@ -40,6 +41,13 @@ const routes: AppRouteConfig[] = [
     label: 'FlashCards',
     path: '/flashcards',
     title: 'JBQ | FlashCards',
+  },
+  {
+    component: QuestionTable,
+    exact: true,
+    label: 'Questions',
+    path: '/questions',
+    title: 'JBQ | Questions',
   },
   // {
   //   label: 'Settings',

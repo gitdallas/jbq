@@ -39,7 +39,7 @@ const FlashCards: React.FunctionComponent = () => {
 
   React.useEffect( () => {
     const newQuestions = shuffle(
-      questions.filter(q => setsSelected.includes(q.section) && pointsSelected.includes(q.points.toString()))
+      questions.filter(q => setsSelected.includes(q.set) && pointsSelected.includes(q.points.toString()))
     );
     setFilteredQuestions(newQuestions);
   }, [setsSelected, pointsSelected, totalRuns]);
@@ -63,7 +63,7 @@ const FlashCards: React.FunctionComponent = () => {
     }
   }
 
-  const questionInfo = (<Tooltip content={`Question #${question?.number} from set #${question?.section}`}>
+  const questionInfo = (<Tooltip content={`Question #${question?.number} from set #${question?.set}`}>
   <Button
     variant="plain"
   >

@@ -1,9 +1,9 @@
 {
-  "name": "patternfly-seed",
-  "version": "0.0.2",
-  "description": "An open source build scaffolding utility for web apps.",
-  "repository": "https://github.com/patternfly/patternfly-react-seed.git",
-  "homepage": "https://patternfly-react-seed.surge.sh",
+  "name": "jbq-webapp",
+  "version": "0.0.1",
+  "description": "Help with studying and coaching jbq.",
+  "repository": "https://github.com/gitdallas/jbq.git",
+  "homepage": "tbd",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -82,6 +82,7 @@
     "@patternfly/react-core": "^5.1.1",
     "@patternfly/react-icons": "^5.1.1",
     "@patternfly/react-styles": "^5.1.1",
+    "@patternfly/react-table": "5.1.2",
     "@storybook/builder-webpack5": "^7.5.3",
     "react": "^18",
     "react-dom": "^18",

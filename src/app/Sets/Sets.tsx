@@ -7,7 +7,7 @@ const Sets: React.FunctionComponent = () => {
   const [activeQuestions, setActiveQuestions] = React.useState(questions);
 
   React.useEffect(() => {
-    setActiveQuestions(questions.filter(q => q.section === set));
+    setActiveQuestions(questions.filter(q => q.set === set));
   }, [set]);
 
   const scrollTop = () => {
