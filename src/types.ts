@@ -18,7 +18,14 @@ export type JbqItem = {
 export type MatchQuestion = {
     number?: number;
     question: JbqItem;
-    playerPoints: {player: Player, points: number}[];
+    points: MatchQuestionPoints[];
+}
+
+export type MatchQuestionPoints = {
+    teamName: string,
+    buzzer: number,
+    playerAtBuzzer: number,
+    correct: boolean
 }
 
 export type Player = {
@@ -45,5 +52,4 @@ export type Team = {
 export type Match = {
     questions: MatchQuestion[];
     teams: Team[];
-    buzzers: Buzzers;
 }

@@ -1,11 +1,12 @@
 import { Flex, FlexItem } from '@patternfly/react-core';
 import { Table, Tbody, Td, Tr } from '@patternfly/react-table';
 import React, { useState } from 'react';
+import { MatchQuestion } from 'src/types';
 
-export const MatchQuestionHelper = ({questions}) => {
-    const tensLeft = Math.max(0, 10 - questions.filter(q => q.points === 10).length);
-    const twentiesLeft = Math.max(0, 7 - questions.filter(q => q.points === 20).length);
-    const thirtiesLeft = Math.max(0, 3 - questions.filter(q => q.points === 30).length);
+export const MatchQuestionHelper = ({questions}: {questions: MatchQuestion[]}) => {
+    const tensLeft = Math.max(0, 10 - questions.filter(q => q.question.points === 10).length);
+    const twentiesLeft = Math.max(0, 7 - questions.filter(q => q.question.points === 20).length);
+    const thirtiesLeft = Math.max(0, 3 - questions.filter(q => q.question.points === 30).length);
 
     return (
         <>
@@ -53,7 +54,7 @@ export const MatchQuestionHelper = ({questions}) => {
                     <Tr>
                         <Td>Pts</Td>
                         {questions?.map((q) => {
-                            return (<Td>{q.points}</Td>)
+                            return (<Td>{q.question.points}</Td>)
                         })}
                     </Tr>
                 </Tbody>
