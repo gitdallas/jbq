@@ -16,9 +16,9 @@ export type JbqItem = {
 }
 
 export type MatchQuestion = {
-    number: number;
+    number?: number;
     question: JbqItem;
-    player: Player[];
+    playerPoints: {player: Player, points: number}[];
 }
 
 export type Player = {
@@ -27,29 +27,19 @@ export type Player = {
     questionsWrong: MatchQuestion[];
 }
 
-export type Buzzers = {
-    green: {
-        team: Team;
-        one: Player[];
-        two: Player[];
-        three: Player[];
-        four: Player[];
-    };
-    red: {
-        team: Team;
-        one: Player[];
-        two: Player[];
-        three: Player[];
-        four: Player[];
-    };
+export type Buzzer = {
+    
 }
 
 export type Team = {
     number?: number;
     name?: string;
-    players: Player[];
-    appeals: number;
-    timeouts: number;
+    buzzerOne?: Player[];
+    buzzerTwo?: Player[];
+    buzzerThree?: Player[];
+    buzzerFour?: Player[];
+    appeals?: number;
+    timeouts?: number;
 }
 
 export type Match = {

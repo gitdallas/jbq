@@ -4,11 +4,11 @@ import { Table, Caption, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-tabl
 import { questions } from '../data';
 
 
-export const QuestionTable: React.FunctionComponent = () => {
+export const QuestionTable = ({ onQuestion, noQuoteDefault = false }) => {
 
     const [searchValue, setSearchValue] = React.useState('');
     const [filteredQuestions, setFilteredQuestions] = React.useState(questions);
-    const [isQuotationQuestion, setIsQuotationQuestion] = React.useState<undefined | 'yes' | 'no'>(undefined);
+    const [isQuotationQuestion, setIsQuotationQuestion] = React.useState<undefined | 'yes' | 'no'>(noQuoteDefault ? 'no' : undefined);
     const [pointValue, setPointValue] = React.useState<undefined | '10' | '20' | '30'>(undefined);
 
     React.useEffect(() => {
@@ -22,6 +22,12 @@ export const QuestionTable: React.FunctionComponent = () => {
             return `${q.question.start} ${q.question.end}`.toLowerCase().includes(searchValue.toLowerCase())
         }));
     }, [isQuotationQuestion, searchValue, pointValue]);
+
+    const reset = () => {
+        setIsQuotationQuestion(noQuoteDefault ? 'no' : undefined);
+        setPointValue(undefined);
+        setSearchValue('');
+    }
 
     const columnNames = {
         number: '#',
@@ -103,7 +109,13 @@ export const QuestionTable: React.FunctionComponent = () => {
                 </Thead>
                 <Tbody>
                     {filteredQuestions.map((q) => (
-                        <Tr key={`question-${q.number}`}>
+                        <Tr
+                            key={`question-${q.number}`}
+                            {...(onQuestion ? { onRowClick: () => {
+                                onQuestion(q);
+                            }} : {}) }
+                            isClickable
+                        >
                             <Td dataLabel={columnNames.number}>{q.number}</Td>
                             <Td dataLabel={columnNames.set}>{q.set}</Td>
                             <Td dataLabel={columnNames.points}>{q.points}</Td>
