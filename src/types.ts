@@ -22,7 +22,7 @@ export type MatchQuestion = {
 }
 
 export type MatchQuestionPoints = {
-    teamName: string,
+    teamColor: string,
     buzzer: number,
     playerAtBuzzer: number,
     correct: boolean

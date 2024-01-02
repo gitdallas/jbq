@@ -46,16 +46,16 @@ export const TeamsForm = ({onCreate}) => {
     }
     return (
         <Form isHorizontal>
-            <FormGroup label="Green Team Name"><TextInput onChange={(_e, val) => setGName(val)} value={gName} /></FormGroup>
-            <FormGroup label="Buzzer 1"><TextInput onChange={(_e, val) => setG1(val)} value={g1} /></FormGroup>
-            <FormGroup label="Buzzer 2"><TextInput onChange={(_e, val) => setG2(val)} value={g2} /></FormGroup>
-            <FormGroup label="Buzzer 3"><TextInput onChange={(_e, val) => setG3(val)} value={g3} /></FormGroup>
-            <FormGroup label="Buzzer 4"><TextInput onChange={(_e, val) => setG4(val)} value={g4} /></FormGroup>
-            <FormGroup label="Red Team Name"><TextInput onChange={(_e, val) => setRName(val)} value={rName} /></FormGroup>
-            <FormGroup label="Buzzer 1"><TextInput onChange={(_e, val) => setR1(val)} value={r1} /></FormGroup>
-            <FormGroup label="Buzzer 2"><TextInput onChange={(_e, val) => setR2(val)} value={r2} /></FormGroup>
-            <FormGroup label="Buzzer 3"><TextInput onChange={(_e, val) => setR3(val)} value={r3} /></FormGroup>
-            <FormGroup label="Buzzer 4"><TextInput onChange={(_e, val) => setR4(val)} value={r4} /></FormGroup>
+            <FormGroup label="Green Team Name"><TextInput id='greenTeam' onChange={(_e, val) => setGName(val)} value={gName} /></FormGroup>
+            <FormGroup label="Buzzer 1"><TextInput id='green1' onChange={(_e, val) => setG1(val)} value={g1} /></FormGroup>
+            <FormGroup label="Buzzer 2"><TextInput id='green2' onChange={(_e, val) => setG2(val)} value={g2} /></FormGroup>
+            <FormGroup label="Buzzer 3"><TextInput id='green3' onChange={(_e, val) => setG3(val)} value={g3} /></FormGroup>
+            <FormGroup label="Buzzer 4"><TextInput id='green4' onChange={(_e, val) => setG4(val)} value={g4} /></FormGroup>
+            <FormGroup label="Red Team Name"><TextInput id='redTeam' onChange={(_e, val) => setRName(val)} value={rName} /></FormGroup>
+            <FormGroup label="Buzzer 1"><TextInput id='red1' onChange={(_e, val) => setR1(val)} value={r1} /></FormGroup>
+            <FormGroup label="Buzzer 2"><TextInput id='red2' onChange={(_e, val) => setR2(val)} value={r2} /></FormGroup>
+            <FormGroup label="Buzzer 3"><TextInput id='red3' onChange={(_e, val) => setR3(val)} value={r3} /></FormGroup>
+            <FormGroup label="Buzzer 4"><TextInput id='red4' onChange={(_e, val) => setR4(val)} value={r4} /></FormGroup>
             <ActionGroup>
                 <Button onClick={submitForm}>Create Teams</Button>
             </ActionGroup>
