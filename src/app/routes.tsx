@@ -7,6 +7,7 @@ import { ProfileSettings } from '@app/Settings/Profile/ProfileSettings';
 import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 import { QuestionTable } from './Table/Table';
+import { CoachHelper } from './CoachHelper/CoachHelper';
 
 let routeFocusTimer: number;
 export interface IAppRoute {
@@ -49,6 +50,13 @@ const routes: AppRouteConfig[] = [
     path: '/questions',
     title: 'JBQ | Questions',
   },
+  {
+    component: CoachHelper,
+    exact: true,
+    label: 'CoachHelper',
+    path: '/coach-helper',
+    title: 'JBQ | Coach',
+  }
   // {
   //   label: 'Settings',
   //   routes: [

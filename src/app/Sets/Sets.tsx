@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BackToTop, DataList, DataListCell, DataListItem, DataListItemCells, DataListItemRow, EmptyState, EmptyStateBody, EmptyStateHeader, Flex, FlexItem, List, ListItem, NumberInput, PageSection, Title } from '@patternfly/react-core';
 import { questions } from '../data';
 import { Answer, Reference } from '@app/utils/common';
+import { SetQuestion } from '@app/components/SetQuesetion';
 const Sets: React.FunctionComponent = () => {
   const [set, setSet] = React.useState<number | ''>(1);
   const [activeQuestions, setActiveQuestions] = React.useState(questions);
@@ -52,39 +53,7 @@ const Sets: React.FunctionComponent = () => {
         <EmptyStateBody>Please select a JBQ Set</EmptyStateBody>
       </EmptyState>
     )}
-    {activeQuestions.map(q => 
-        <DataListItem key={`question-${q.number}`}>
-        <DataListItemRow>
-          <DataListItemCells
-            dataListCells={[
-              <DataListCell key="question">
-                <Flex flexWrap={{ default: 'wrap', sm: 'nowrap' }}  direction={{ default: 'column', sm: 'row' }}>
-                  <FlexItem style={{'width':'65px', 'whiteSpace': 'nowrap'}}>{q.points} points</FlexItem>
-                  <FlexItem style={{'width':'25px', 'whiteSpace': 'nowrap'}}>{q.number}.</FlexItem>
-                  <FlexItem>
-                    <span className='question-start'>
-                      {q.quotation && 'Quotation question: '}{q.question.start}{` `}
-                    </span>
-                    <span>
-                      {q.question.end && `${q.question.end} `}
-                    </span>
-                    {q.answer && <Answer answer={q.answer} reference={q.reference} />}
-                    {q.answers && (
-                      <List>
-                        {q.answers.map( (a,i) => (
-                          <ListItem key={`answer-${i+1}`}><Answer answer={a.answer} reference={a.reference} /></ListItem>
-                        ))}
-                        {!q.answer && q.reference && <Reference>{q.reference}</Reference>}
-                      </List>
-                    )}
-                  </FlexItem>
-                </Flex>
-              </DataListCell>
-            ]}
-          />
-        </DataListItemRow>
-      </DataListItem>
-    )}
+    {activeQuestions.map(q => <SetQuestion q={q} />)}
   </DataList>
   <Title headingLevel="h1" size="lg">JBQ Set:{` `}
     <NumberInput
