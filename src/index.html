@@ -4,31 +4,15 @@
 <head>
   <meta charset="utf-8">
   <title>JBQ</title>
-  <meta id="appName" name="application-name" content="Patternfly Seed">
+  <meta id="appName" name="application-name" content="jbq">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/images/favicon.png">
-  <base href="/">
+  <base href="/jbq">
 </head>
 
 <body>
   <noscript>Enabling JavaScript is required to run this app.</noscript>
   <div id="root"></div>
-  <script>
-  var removeIt = () => {
-    setTimeout(() => {
-      var bad = document?.querySelector('#root')?.parentNode?.querySelector("[style*='background: rgb(220,137,232) !important']");
-      console.log({bad});
-      if (bad) {
-        bad.remove();
-      } else {
-        removeIt();
-      }
-    }, 100)
-  };
-  if (window.location.href.includes('tiiny')) {
-    removeIt();
-  }
-  </script>
 </body>
 
 </html>
