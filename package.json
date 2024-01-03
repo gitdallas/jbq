@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Help with studying and coaching jbq.",
   "repository": "https://github.com/gitdallas/jbq.git",
-  "homepage": ".",
+  "homepage": "https://gitdallas.github.io/jbq/",
   "license": "MIT",
   "private": true,
   "scripts": {
